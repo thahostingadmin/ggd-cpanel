@@ -5,7 +5,8 @@
 
 if [[ -z "$1" ]]; then
    echo "You must specify the IP address or hostname of your Graphite server. Example:"
-echo "installDiamond.sh 111.111.111.111"
+    echo "bash installDiamond.sh 111.111.111.111"
+    exit 1
 fi
 
 if [[ $EUID -ne 0 ]]; then
