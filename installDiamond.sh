@@ -23,18 +23,18 @@ yum install python-pip -y
 echo "Installing Python Diamond"
 pip install diamond
 
+echo "Adding pydiamond user"
+adduser --system --no-create-home --shell=/sbin/nologin pydiamond
+
 echo "Setting up the configuration"
 cd ~
 mkdir -pv /etc/diamond/collectors
 mkdir -v /etc/diamond/configs
 mkdir -v /var/log/diamond
 chown -v pydiamond /var/log/diamond
-cp -Rv ~/ggd-cpanel/diamond /etc/diamond
+cp -Rv /root/ggd-cpanel/diamond /etc/
 sed -i "s/graphitehostplaceholder/$1/" /etc/diamond/diamond.conf
-cp -v ~/ggd-cpanel/diamond/diamond.service.example /etc/systemd/system/
-
-echo "Adding pydiamond user"
-adduser --system --no-create-home --shell=/sbin/nologin pydiamond
+cp -v /root/ggd-cpanel/diamond/diamond.service.example /etc/systemd/system/
 
 echo "Enabling systemd unit file"
 systemctl enable diamond
