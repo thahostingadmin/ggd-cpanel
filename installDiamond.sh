@@ -3,7 +3,7 @@
 # This script was created by tha hosting admin
 # Find us on youtube by searching for tha hosting admin
 
-if [[ -z "$1" ]]
+if [[ -z "$1" ]]; then
    echo "You must specify the IP address or hostname of your Graphite server. Example:"
 echo "installDiamond.sh 111.111.111.111"
 fi
