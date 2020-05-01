@@ -35,6 +35,7 @@ chown -v pydiamond /var/log/diamond
 cp -Rv /root/ggd-cpanel/diamond /etc/
 sed -i "s/graphitehostplaceholder/$1/" /etc/diamond/diamond.conf
 cp -v /root/ggd-cpanel/diamond/diamond.service.example /etc/systemd/system/diamond.service
+systemctl daemon-reload
 
 echo "Enabling systemd unit file"
 systemctl enable diamond
