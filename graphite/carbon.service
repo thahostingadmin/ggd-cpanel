@@ -1,0 +1,14 @@
+[Unit]
+Description = Carbon Cache - Listener daemon for Graphite.
+
+[Service]
+Type = forking
+GuessMainPID = false
+PIDFile = /opt/graphite/storage/carbon-cache-a.pid 
+ExecStart = /opt/graphite/bin/carbon-cache.py start
+ExecStop = /opt/graphite/bin/carbon-cache.py stop
+User = carbon
+Group = carbon
+
+[Install]
+WantedBy = multi-user.target
