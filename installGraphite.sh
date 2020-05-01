@@ -75,7 +75,7 @@ mv -v /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf-ggd-cpanel-install-b
 cp -v /root/ggd-cpanel/graphite/httpd.conf /etc/httpd/conf/httpd.conf
 
 echo "Creating user for the carbon daemon"
-adduser --system --no-create-home --shell=/sbin/nologin
+adduser --system --no-create-home --shell=/sbin/nologin carbon
 
 echo "Updating ownership of whisper storage for the carbon daemon"
 chown -R carbon:carbon /opt/graphite/storage
