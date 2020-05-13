@@ -68,8 +68,6 @@ PYTHONPATH=/opt/graphite/webapp /usr/lib/python2.7/site-packages/django/bin/djan
 echo "Create the graphite.wsgi from the example"
 cp -v /opt/graphite/conf/graphite.wsgi.example /opt/graphite/conf/graphite.wsgi
 
-
-
 echo "Copying apache configuration into place."
 mv -v /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf-ggd-cpanel-install-bak
 cp -v /root/ggd-cpanel/graphite/httpd.conf /etc/httpd/conf/httpd.conf
@@ -78,10 +76,14 @@ echo "Creating user for the carbon daemon"
 adduser --system --no-create-home --shell=/sbin/nologin carbon
 
 echo "Updating ownership of whisper storage for the carbon daemon"
-chown -R carbon:carbon /opt/graphite/storage/whisper 
+chown -vR carbon:carbon /opt/graphite/storage/whisper 
 
-echo "Updating ownership of storage for apache"
-chown apache:apache /opt/graphite/storage
+echo "Updating ownership of logs for carbon"
+chown -v carbon:carbon /opt/graphite/storage/log
+
+echo "Updating ownership and perms of storage for carbon & apache"
+chown -v carbon:apache /opt/graphite/storage
+chmod -v 775 /opt/graphite/storage
 
 echo "Copy main carbon configuration into place"
 cp -v /opt/graphite/conf/carbon.conf.example /opt/graphite/conf/carbon.conf
