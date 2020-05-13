@@ -82,7 +82,7 @@ echo "Updating ownership of logs for carbon"
 chown -v carbon:carbon /opt/graphite/storage/log
 
 echo "Updating ownership of logs for apache"
-chown -v apache:apache /opt/graphite/storage/log/webapp
+chown -Rv apache:apache /opt/graphite/storage/log/webapp
 
 echo "Updating ownership of django sqlite database for apache"
 chown -v apache:apache /opt/graphite/storage/graphite.db
