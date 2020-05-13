@@ -57,6 +57,7 @@ cp -v /opt/graphite/webapp/graphite/local_settings.py.example /opt/graphite/weba
 
 echo "Creating secret key in local_settings.py"
 sed -i "s/UNSAFE_DEFAULT/$(</dev/urandom tr -dc '12345@#$%qwertQWERTasdfgASDFGzxcvbZXCVB' | head -c200)/" /opt/graphite/webapp/graphite/local_settings.py
+sed -i "s/#SECRET_KEY/SECRET_KEY/" /opt/graphite/webapp/graphite/local_settings.py
 
 echo "Setting up the database schema for Graphite Web"
 PYTHONPATH=/opt/graphite/webapp /usr/lib/python2.7/site-packages/django/bin/django-admin.py migrate --settings=graphite.settings
