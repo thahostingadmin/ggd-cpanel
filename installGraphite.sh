@@ -77,10 +77,10 @@ echo "Creating user for the carbon daemon"
 adduser --system --no-create-home --shell=/sbin/nologin carbon
 
 echo "Updating ownership of whisper storage for the carbon daemon"
-chown -R carbon:carbon /opt/graphite/storage
+chown -R carbon:carbon /opt/graphite/storage/whisper 
 
-echo "Updating ownership of webapp for apache"
-chown -R apache:apache /opt/graphite/webapp
+echo "Updating ownership of storage for apache"
+chown apache:apache /opt/graphite/storage
 
 echo "Copy main carbon configuration into place"
 cp -v /opt/graphite/conf/carbon.conf.example /opt/graphite/conf/carbon.conf
