@@ -54,6 +54,11 @@ pip install --no-binary=:all: https://github.com/graphite-project/graphite-web/t
 
 echo "Setup the local_settings.py"
 cp -v /opt/graphite/webapp/graphite/local_settings.py.example /opt/graphite/webapp/graphite/local_settings.py
+sed -i '/#DATABASES = {/,+10 s/^#//' /opt/graphite/webapp/graphite/local_settings.py
+sed -i 's/\/opt\/graphite\/storage\/graphite.db/\/opt\/graphite\/webapp\/graphite.db/' /opt/graphite/webapp/graphite/local_settings.py
+
+echo "Setting up ownership of webapp dir"
+chown -v apache:apache /opt/graphite/webapp
 
 echo "Creating secret key in local_settings.py"
 sed -i "s/UNSAFE_DEFAULT/$(</dev/urandom tr -dc '12345@#$%qwertQWERTasdfgASDFGzxcvbZXCVB' | head -c200)/" /opt/graphite/webapp/graphite/local_settings.py
@@ -84,12 +89,8 @@ chown -v carbon:carbon /opt/graphite/storage/log
 echo "Updating ownership of logs for apache"
 chown -Rv apache:apache /opt/graphite/storage/log/webapp
 
-echo "Updating ownership of django sqlite database for apache"
-chown -v apache:apache /opt/graphite/storage/graphite.db
-
 echo "Updating ownership and perms of storage for carbon & apache"
-chown -v carbon:apache /opt/graphite/storage
-chmod -v 775 /opt/graphite/storage
+chown -v carbon:carbon /opt/graphite/storage
 
 echo "Copy main carbon configuration into place"
 cp -v /opt/graphite/conf/carbon.conf.example /opt/graphite/conf/carbon.conf
@@ -109,9 +110,5 @@ systemctl start carbon
 
 echo "Starting apache"
 systemctl start httpd
-echo
-echo
-echo
-echo "Depending on the following output, you may need to restart the server to load required libraries and software:"
-needs-restarting -s
+
 needs-restarting -r
