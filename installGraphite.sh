@@ -88,7 +88,7 @@ echo "Updating ownership of django sqlite database for apache"
 chown -v apache:apache /opt/graphite/storage/graphite.db
 
 echo "Updating ownership and perms of storage for carbon & apache"
-chown -Rv carbon:apache /opt/graphite/storage
+chown -v carbon:apache /opt/graphite/storage
 chmod -v 775 /opt/graphite/storage
 
 echo "Copy main carbon configuration into place"
