@@ -81,8 +81,14 @@ chown -vR carbon:carbon /opt/graphite/storage/whisper
 echo "Updating ownership of logs for carbon"
 chown -v carbon:carbon /opt/graphite/storage/log
 
+echo "Updating ownership of logs for apache"
+chown -v apache:apache /opt/graphite/storage/log/webapp
+
+echo "Updating ownership of django sqlite database for apache"
+chown -v apache:apache /opt/graphite/storage/graphite.db
+
 echo "Updating ownership and perms of storage for carbon & apache"
-chown -v carbon:apache /opt/graphite/storage
+chown -Rv carbon:apache /opt/graphite/storage
 chmod -v 775 /opt/graphite/storage
 
 echo "Copy main carbon configuration into place"
