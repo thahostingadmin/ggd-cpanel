@@ -78,7 +78,7 @@ cp -v /opt/graphite/conf/graphite.wsgi.example /opt/graphite/conf/graphite.wsgi
 
 echo "Copying apache configuration into place."
 mv -v /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf-ggd-cpanel-install-bak
-cp -v /root/ggd-cpanel/graphite/httpd.conf /etc/httpd/conf/httpd.conf
+cp -v /root/ggd-cpanel/graphite/httpd/httpd.conf /etc/httpd/conf/httpd.conf
 
 echo "Creating user for the carbon daemon"
 adduser --system --no-create-home --shell=/sbin/nologin carbon
@@ -102,7 +102,7 @@ echo "Copy carbon storage schema configuration into place"
 cp -v /opt/graphite/conf/storage-schemas.conf.example /opt/graphite/conf/storage-schemas.conf
 
 echo "Copying carbon unit file into place"
-cp -v /root/ggd-cpanel/graphite/carbon.service /etc/systemd/system/
+cp -v /root/ggd-cpanel/graphite/systemctl/carbon.service /etc/systemd/system/
 systemctl daemon-reload
 
 echo "Enabling the carbon daemon"
