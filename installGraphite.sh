@@ -67,6 +67,9 @@ sed -i "s/#SECRET_KEY/SECRET_KEY/" /opt/graphite/webapp/graphite/local_settings.
 echo "Setting up the database schema for Graphite Web"
 PYTHONPATH=/opt/graphite/webapp /usr/lib/python2.7/site-packages/django/bin/django-admin.py migrate --settings=graphite.settings
 
+echo "Setting ownership of Graphite Web database"
+chown -v apache:apache /opt/graphite/webapp/graphite.db
+
 echo "Create the Graphite Web static content"
 PYTHONPATH=/opt/graphite/webapp /usr/lib/python2.7/site-packages/django/bin/django-admin.py collectstatic --noinput --settings=graphite.settings
 
