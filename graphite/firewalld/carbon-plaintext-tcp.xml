@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>Carbon Plaintext</short>
+  <description>The plaintext protocol is the most straightforward protocol supported by Carbon (graphite's receiving daemon). Carbon recieves plaintext data on this port and stores it to the whisper database.</description>
+  <port protocol="tcp" port="2003"/>
+</service>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>Carbon Query</short>
+  <description>The Carbon query port is used to obtain data from the Whisper database.</description>
+  <port protocol="tcp" port="7002"/>
+</service>

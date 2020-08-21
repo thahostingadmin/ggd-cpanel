@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>Carbon Pickle Protocol</short>
+  <description>The pickle protocol is a much more efficient take on the plaintext protocol, and supports sending batches of metrics to Carbon (the Graphite receiving daemon) in one go.</description>
+  <port protocol="tcp" port="2004"/>
+</service>
